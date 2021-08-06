@@ -1,0 +1,238 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=pictorialBar-dotted
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+        -->
+    <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+    <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+    <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/world.js"></script>
+        -->
+    <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+        -->
+
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        var option;
+
+
+
+        // Generate data
+        var category = [];
+        var dottedBase = +new Date();
+        var lineData = [];
+        var barData = [];
+
+        category.push(2015);
+        category.push(2016);
+        category.push(2017);
+        category.push(2018);
+        category.push(2019);
+        category.push(2020);
+        category.push(2021);
+        category.push(2022);
+        category.push(2023);
+        category.push(2024);
+        category.push(2025);
+        category.push(2026);
+
+
+
+
+        barData.push(15.6);
+        barData.push(41.8);
+        barData.push(42.5);
+        barData.push(69.8);
+        barData.push(95.6);
+        barData.push(113.96);
+        barData.push(135.83);
+        barData.push(161.91);
+        barData.push(193.0);
+        barData.push(230.06);
+        barData.push(274.23);
+        barData.push(326.88);
+
+        lineData.push(15.6 - 4);
+        lineData.push(41.8 + 1);
+        lineData.push(42.5 + 4);
+        lineData.push(69.8 + 10);
+        lineData.push(95.6 + 12);
+        lineData.push(113.8 + 45);
+        lineData.push(135.82 + 60);
+        lineData.push(161.91 + 65);
+        lineData.push(193.0 + 70);
+        lineData.push(230.05 + 40);
+        lineData.push(274.23 + 23);
+        lineData.push(326.88 + 45);
+
+
+        // for (var i = 0; i < 12; i++) {
+        //     // var date = new Date(dottedBase += 3600 * 24 * 1000);
+        //     // category.push([
+        //     //     date.getFullYear(),
+        //     //     date.getMonth() + 1,
+        //     //     date.getDate()
+        //     // ].join('-'));
+        //     // var b = Math.random() * 200;
+        //     // var
+        //     // var b;
+        //     var d = Math.random() * 200;
+        //     // barData.push(b)
+        //     lineData.push(d + b[i]);
+
+        // }
+
+        // option
+        option = {
+            // 可以注释掉
+            backgroundColor: '#fff',
+            title: {
+                text: 'Global Intelligent Voice Systems Market Statistics and Forecasts 2015-2026',
+                // subtext: 'What users care most about voice assistants around the world',
+                left: 'center',
+                textStyle: { color: "#fff" },
+
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['line', 'bar'],
+                orient: 'vertical',
+                left: 'left',
+                textStyle: {
+                    color: '#000'
+                }
+            },
+            xAxis: {
+                data: category,
+                axisLine: {
+                    lineStyle: {
+                        color: '#000'
+                    }
+                }
+            },
+            yAxis: {
+                splitLine: { show: false },
+                axisLine: {
+                    lineStyle: {
+                        color: '#000'
+                    }
+                }
+
+            },
+            series: [
+                // 上面的折线
+                {
+                    name: 'line',
+                    type: 'line',
+                     itemStyle: {
+                        color: '#8B0000'
+                    },
+                    smooth: true,
+                    label: {
+                        show: true,
+                        position: 'top'
+                    },
+                    showAllSymbol: true,
+                    symbol: 'emptyCircle',
+                    symbolSize: 15,
+                    data: lineData,
+                    markLine: {
+                        data: [
+                            { type: 'average', name: '平均值' }
+                        ]
+                    }
+                },
+                // 蓝色柱子
+                {
+                    name: 'bar',
+                    type: 'bar',
+                    barWidth: 10,
+                    itemStyle: {
+                        barBorderRadius: 5,
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#FF7F50' },
+                                { offset: 1, color: '#FF4500' }
+                            ]
+                        )
+                    },
+                    data: barData
+                },
+                // 淡蓝色
+                {
+                    name: 'line',
+                    type: 'bar',
+                    // 这里是控制细的线条的位置的
+                    barGap: '-100%',
+                    barWidth: 10,
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: 'rgba(20,200,212,0.5)' },
+                                { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
+                                { offset: 1, color: 'rgba(20,200,212,0)' }
+                            ]
+                        )
+                    },
+                    z: -12,
+                    data: lineData
+                },
+                // 神色斑点纹
+                {
+                    name: 'dotted',
+                    type: 'pictorialBar',
+                    symbol: 'rect',
+                    itemStyle: {
+                        color: '#B22222'
+                    },
+                    symbolRepeat: true,
+                    symbolSize: [12, 4],
+                    symbolMargin: 1,
+                    z: -10,
+                    data: lineData,
+                    // show:true
+                },
+
+
+                
+
+            ]
+        };
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
+    </script>
+</body>
+
+</html>
